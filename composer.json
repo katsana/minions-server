@@ -26,9 +26,22 @@
         "react/promise": "^2.5"
     },
     "require-dev": {
+        "katsana/minions": "^1.2",
         "mockery/mockery": "^1.3.1",
-        "phpunit/phpunit": "^8.4",
-        "katsana/minions": "^1.2"
+        "phpunit/phpunit": "^8.4"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Minions\\Server\\MinionsServiceProvider"
+            ]
+        }
     },
     "minimum-stability": "dev"
 }
