@@ -1,11 +1,17 @@
 {
     "name": "katsana/minions-server",
+    "description": "Minions Component Server using ReactPHP",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
+            "name": "KATSANA Developer",
+            "email": "developer@katsana.com"
+        },
+        {
             "name": "Mior Muhammad Zaki",
-            "email": "crynobone@gmail.com"
+            "email": "crynobone@katsana.com",
+            "role": "Developer"
         }
     ],
     "autoload": {
