@@ -3,12 +3,11 @@
 namespace Minions\Server;
 
 use Illuminate\Contracts\Container\Container;
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 use Minions\Concerns\Configuration;
 use Orchestra\Canvas\Core\CommandsProvider;
 
-class MinionsServiceProvider extends ServiceProvider implements DeferrableProvider
+class MinionsServiceProvider extends ServiceProvider
 {
     /**
      * Register the application services.
@@ -35,12 +34,12 @@ class MinionsServiceProvider extends ServiceProvider implements DeferrableProvid
     }
 
     /**
-     * Get the events that trigger this service provider to register.
+     * Determine if the provider is deferred.
      *
-     * @return array
+     * @return bool
      */
-    public function provides()
+    public function isDeferred()
     {
-        return [];
+        return true;
     }
 }
