@@ -1,6 +1,12 @@
 Minions Component Server using ReactPHP
 ===================
 
+[![Build Status](https://travis-ci.org/katsana/minions-server.svg?branch=master)](https://travis-ci.org/katsana/minions-server)
+[![Latest Stable Version](https://poser.pugx.org/katsana/minions-server/v/stable)](https://packagist.org/packages/katsana/minions-server)
+[![Total Downloads](https://poser.pugx.org/katsana/minions-server/downloads)](https://packagist.org/packages/katsana/minions-server)
+[![Latest Unstable Version](https://poser.pugx.org/katsana/minions-server/v/unstable)](https://packagist.org/packages/katsana/minions-server)
+[![License](https://poser.pugx.org/katsana/minions-server/license)](https://packagist.org/packages/katsana/minions-server)
+
 * [Installation](#installation)
 * [Usages](#usages)
     - [Configurations](#configurations)
