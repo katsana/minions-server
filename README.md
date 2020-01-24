@@ -2,6 +2,9 @@ Minions Component Server using ReactPHP
 ===================
 
 * [Installation](#installation)
+* [Usages](#usages)
+    - [Configurations](#configurations)
+    - [Keeping the socket server running with supervisord](#keeping-the-socket-server-running-with-supervisord)
 
 ## Installation
 
