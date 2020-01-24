@@ -18,13 +18,19 @@ Please ensure that you already install **Minions** and go through the [installat
 
 ## Usages
 
-Minions behind the hood run using ReactPHP running from Artisan command and configured using `minions.server` under `config/minions.php`. 
+**Minion Server** will run the RPC Server using ReactPHP running from Artisan command. 
 
 You can start the RPC server by issuing the artisan command:
 
     php artisan minions:serve
 
 ### Configurations
+
+You can export the default `minions-server.php` to your project directory via the following command:
+
+```
+php artisan vendor:publish --provider="Minions\Server\MinionsServiceProvider" --tag="config"
+```
 
 #### Using a different port
 
