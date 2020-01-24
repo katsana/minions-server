@@ -59,8 +59,8 @@ class Connector
     protected function middlewares(Router $router): array
     {
         return [
-            new Middleware\Http\LogRequest($this->logger),
-            new Middleware\Http\StatusPage(),
+            new Middleware\LogRequest($this->logger),
+            new Middleware\StatusPage(),
             static function (ServerRequestInterface $request) use ($router) {
                 $reply = $router->handle($request);
 
