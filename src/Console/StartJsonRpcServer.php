@@ -28,7 +28,7 @@ class StartJsonRpcServer extends Command
     {
         $config = \array_merge([
             'host' => '0.0.0.0', 'port' => 8085, 'secure' => false,
-        ], $this->laravel->get('config')->get('minions.server', []));
+        ], $this->laravel->get('config')->get('minions-server', []));
 
         $hostname = "{$config['host']}:{$config['port']}";
 

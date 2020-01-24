@@ -26,6 +26,13 @@ class MinionsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../config/minions-server.php' => \config_path('minions-server.php'),
+        ], 'config');
+
+
+        $this->mergeConfigFrom(__DIR__.'/../config/minions-server.php', 'minions-server');
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\StartJsonRpcServer::class,
