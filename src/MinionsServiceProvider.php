@@ -32,14 +32,4 @@ class MinionsServiceProvider extends ServiceProvider
             ]);
         }
     }
-
-    /**
-     * Determine if the provider is deferred.
-     *
-     * @return bool
-     */
-    public function isDeferred()
-    {
-        return true;
-    }
 }
