@@ -2,7 +2,6 @@
 
 namespace Minions\Server\Tests\Feature;
 
-use Illuminate\Support\ServiceProvider;
 use Minions\Server\MinionsServiceProvider;
 use Orchestra\Testbench\TestCase;
 
@@ -11,7 +10,7 @@ class MinionsServiceProviderTest extends TestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */
@@ -38,6 +37,6 @@ class MinionsServiceProviderTest extends TestCase
     {
         $this->assertSame([
             realpath(__DIR__.'/../../').'/src/../config/minions-server.php' => $this->app->configPath('minions-server.php'),
-        ], ServiceProvider::pathsToPublish(MinionsServiceProvider::class, 'config'));
+        ], MinionsServiceProvider::pathsToPublish(MinionsServiceProvider::class, 'config'));
     }
 }
