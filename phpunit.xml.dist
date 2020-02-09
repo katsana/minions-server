@@ -20,7 +20,7 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/</directory>
             <exclude>
-                <directory suffix=".php">src/Server/Console</directory>
+                <directory suffix=".php">src/Console</directory>
             </exclude>
         </whitelist>
     </filter>
