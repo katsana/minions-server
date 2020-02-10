@@ -6,6 +6,7 @@ Minions Component Server using ReactPHP
 [![Total Downloads](https://poser.pugx.org/katsana/minions-server/downloads)](https://packagist.org/packages/katsana/minions-server)
 [![Latest Unstable Version](https://poser.pugx.org/katsana/minions-server/v/unstable)](https://packagist.org/packages/katsana/minions-server)
 [![License](https://poser.pugx.org/katsana/minions-server/license)](https://packagist.org/packages/katsana/minions-server)
+[![Coverage Status](https://coveralls.io/repos/github/katsana/minions-server/badge.svg?branch=master)](https://coveralls.io/github/katsana/minions-server?branch=master)
 
 * [Installation](#installation)
 * [Usages](#usages)
