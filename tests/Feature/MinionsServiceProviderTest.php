@@ -38,7 +38,7 @@ class MinionsServiceProviderTest extends TestCase
         $configFile = realpath(__DIR__.'/../..').'/src/../config/minions-server.php';
 
         if (DIRECTORY_SEPARATOR === '\\') {
-            $configFile = realpath(__DIR__.'\..\..\src\..').'\config\minions-server.php';
+            $configFile = realpath(__DIR__.'\..\..').'\src/../config/minions-server.php';
         }
 
         $this->assertSame([
