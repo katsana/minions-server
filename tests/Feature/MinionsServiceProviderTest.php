@@ -35,8 +35,14 @@ class MinionsServiceProviderTest extends TestCase
     /** @test */
     public function it_can_publish_configuration_file()
     {
+        $configFile = realpath(__DIR__.'/../..').'/src/../config/minions-server.php';
+
+        if (DIRECTORY_SEPARATOR === '\\') {
+            $configFile = realpath(__DIR__.'\..\..\src\..').'\config\minions-server.php';
+        }
+
         $this->assertSame([
-            realpath(__DIR__.'/../../').'/src/../config/minions-server.php' => $this->app->configPath('minions-server.php'),
+            $configFile => $this->app->configPath('minions-server.php'),
         ], MinionsServiceProvider::pathsToPublish(MinionsServiceProvider::class, 'config'));
     }
 }
