@@ -27,9 +27,11 @@ class StartJsonRpcServer extends Command
      */
     public function handle(LoopInterface $eventLoop, Logger $logger)
     {
-        $config = \array_merge([
-            'host' => '0.0.0.0', 'port' => $this->option('port'), 'secure' => false,
-        ], \config('minions-server', []));
+        $config = \array_merge(\config('minions-server', []), [
+            'host' => '0.0.0.0',
+            'port' => $this->option('port'),
+            'secure' => false,
+        ]);
 
         $hostname = "{$config['host']}:{$config['port']}";
 
