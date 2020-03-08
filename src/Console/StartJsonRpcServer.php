@@ -7,17 +7,18 @@ use Illuminate\Database\DetectsLostConnections;
 use Laravie\Stream\Log\Console as Logger;
 use Minions\Server\Connector;
 use React\EventLoop\LoopInterface;
+use Symfony\Component\Console\Input\InputOption;
 
 class StartJsonRpcServer extends Command
 {
     use DetectsLostConnections;
 
     /**
-     * The name and signature of the console command.
+     * The name of the console command.
      *
      * @var string
      */
-    protected $signature = 'minions:serve';
+    protected $name = 'minions:serve';
 
     /**
      * Execute the console command.
@@ -27,8 +28,8 @@ class StartJsonRpcServer extends Command
     public function handle(LoopInterface $eventLoop, Logger $logger)
     {
         $config = \array_merge([
-            'host' => '0.0.0.0', 'port' => 8085, 'secure' => false,
-        ], $this->laravel->get('config')->get('minions-server', []));
+            'host' => '0.0.0.0', 'port' => $this->option('port'), 'secure' => false,
+        ], \config('minions-server', []));
 
         $hostname = "{$config['host']}:{$config['port']}";
 
@@ -51,5 +52,17 @@ class StartJsonRpcServer extends Command
         $eventLoop->run();
 
         return 0;
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['port', null, InputOption::VALUE_OPTIONAL, 'The server port to use.', \config('minions-server.port', 8085)],
+        ];
     }
 }
