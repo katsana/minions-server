@@ -14,7 +14,7 @@ jobs:
       matrix:
         php: [7.4, 7.3, 7.2]
         laravel: [6.x, 7.x]
-        minions: [1.2, 2.0.0]
+        minions: [1.x, 2.x]
         os: [ubuntu-latest, windows-latest]
 
     name: PHP${{ matrix.php }} with Laravel ${{ matrix.laravel }} and Minion ${{ matrix.minions }} on ${{ matrix.os }}
@@ -38,7 +38,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "katsana/minions:^${{ matrix.minions }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "katsana/minions:${{ matrix.minions }}" --no-interaction --no-update
           composer update --prefer-dist --no-interaction --no-suggest
       - name: Execute tests
         run: vendor/bin/phpunit
