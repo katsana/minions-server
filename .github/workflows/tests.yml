@@ -38,7 +38,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "katsana/minions:^${{ matrix:minions }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "katsana/minions:^${{ matrix.minions }}" --no-interaction --no-update
           composer update --prefer-dist --no-interaction --no-suggest
       - name: Execute tests
         run: vendor/bin/phpunit
