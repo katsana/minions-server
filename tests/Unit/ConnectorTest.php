@@ -4,6 +4,7 @@ namespace Minions\Server\Tests\Unit;
 
 use Illuminate\Contracts\Container\Container;
 use Laravie\Stream\Logger;
+use Minions\Configuration;
 use Minions\Http\Router;
 use Minions\Server\Connector;
 use Mockery as m;
@@ -33,7 +34,7 @@ class ConnectorTest extends TestCase
 
         $connector = new Connector($hostname, $eventLoop, $logger);
 
-        $connector->handle(new Router($container, []), ['secure' => false]);
+        $connector->handle(new Router($container, new Configuration([])), ['secure' => false]);
 
         $this->addToAssertionCount(1);
 
@@ -53,7 +54,7 @@ class ConnectorTest extends TestCase
 
         $connector = new Connector($hostname, $eventLoop, $logger);
 
-        $connector->handle(new Router($container, []), ['secure' => true]);
+        $connector->handle(new Router($container, new Configuration([])), ['secure' => true]);
 
         $this->addToAssertionCount(1);
 
