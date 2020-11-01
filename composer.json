@@ -10,7 +10,7 @@
         },
         {
             "name": "Mior Muhammad Zaki",
-            "email": "crynobone@katsana.com",
+            "email": "crynobone@gmail.com",
             "role": "Developer"
         }
     ],
@@ -25,6 +25,7 @@
         }
     },
     "require": {
+        "php": ">=7.3",
         "illuminate/console": "^6.0 || ^7.0 || ^8.0",
         "katsana/minions": "^1.6 || ^2.1",
         "laravie/stream": "^1.3",
