@@ -19,7 +19,9 @@ jobs:
           - "7.3"
           - "7.4"
         dependencies:
+          - "locked"
           - "highest"
+          - "lowest"
         laravel:
           - "6.x"
           - "7.x"
@@ -48,10 +50,14 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlite3, pdo_sqlite, bcmath, fileinfo
           coverage: none
 
-      - name: Install dependencies
+      - name: Install Laravel Framework ${{ matrix.laravel }}
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" "katsana/minions:${{ matrix.minions }}" --no-interaction --no-update
-          composer update --prefer-dist --no-interaction --no-suggest
+      - name: Install dependencies
+        uses: "ramsey/composer-install@v1"
+        with:
+          composer-options: "--prefer-dist --no-cache"
+
       - name: Execute tests
         run: vendor/bin/phpunit
 
@@ -102,5 +108,7 @@ jobs:
           composer require "laravel/framework:${{ matrix.laravel }}" "katsana/minions:${{ matrix.minions }}" --no-interaction --no-update
       - name: Install dependencies
         uses: "ramsey/composer-install@v1"
+        with:
+          composer-options: "--prefer-dist --no-cache"
       - name: Execute tests
         run: vendor/bin/phpunit
