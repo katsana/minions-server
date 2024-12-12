@@ -3,7 +3,7 @@
 namespace Minions\Server\Middleware;
 
 use Psr\Http\Message\ServerRequestInterface;
-use React\Http\Response;
+use React\Http\Message\Response;
 
 class StatusPage
 {

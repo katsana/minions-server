@@ -30,7 +30,7 @@ class StatusPageTest extends TestCase
             //
         });
 
-        $this->assertInstanceOf('React\Http\Response', $response);
+        $this->assertInstanceOf('React\Http\Message\Response', $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame(['Content-Type' => ['text/plain']], $response->getHeaders());
         $this->assertSame('OK', (string) $response->getBody());

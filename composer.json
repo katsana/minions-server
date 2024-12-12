@@ -27,11 +27,11 @@
     "require": {
         "php": ">=7.3",
         "illuminate/console": "^6.0 || ^7.0 || ^8.0",
-        "katsana/minions": "^1.6 || ^2.1",
+        "katsana/minions": "2.x-dev",
         "laravie/stream": "^1.3",
         "league/climate": "^3.5",
         "react/event-loop": "^1.1",
-        "react/http": "^0.8.4",
+        "react/http": "^1.9",
         "react/promise": "^2.5"
     },
     "require-dev": {
