@@ -5,6 +5,7 @@ namespace Minions\Server\Tests\Unit\Middleware;
 use Minions\Server\Middleware\StatusPage;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
+use React\Http\Message\Response;
 
 class StatusPageTest extends TestCase
 {
@@ -30,7 +31,7 @@ class StatusPageTest extends TestCase
             //
         });
 
-        $this->assertInstanceOf('React\Http\Response', $response);
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame(['Content-Type' => ['text/plain']], $response->getHeaders());
         $this->assertSame('OK', (string) $response->getBody());

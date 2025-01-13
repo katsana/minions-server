@@ -6,9 +6,9 @@ use Laravie\Stream\Logger;
 use Minions\Http\Router;
 use Psr\Http\Message\ServerRequestInterface;
 use React\EventLoop\LoopInterface;
-use React\Http\Response;
-use React\Http\Server as HttpServer;
-use React\Socket\Server as SocketServer;
+use React\Http\Message\Response;
+use React\Http\HttpServer;
+use React\Socket\SocketServer;
 
 class Connector
 {
@@ -48,26 +48,24 @@ class Connector
      */
     public function handle(Router $router, array $config): HttpServer
     {
-        return $this->bootServer(
-            new HttpServer($this->middlewares($router)), $config
-        );
+        $handler = function (ServerRequestInterface $request) use ($router) {
+            return $router($request);
+        };
+
+        $server = new HttpServer($this->eventLoop, $handler);
+
+        return $this->bootServer($server, $config);
     }
 
     /**
      * HTTP request middlewares.
      */
-    protected function middlewares(Router $router): array
+    protected function middlewares(Router $router, callable $handler): array
     {
         return [
             new Middleware\LogRequest($this->logger),
             new Middleware\StatusPage(),
-            static function (ServerRequestInterface $request) use ($router) {
-                $reply = $router->handle($request);
-
-                return new Response(
-                    $reply->status(), $reply->headers(), $reply->body()
-                );
-            },
+            $handler,
         ];
     }
 
@@ -90,7 +88,13 @@ class Connector
      */
     protected function bootSecuredServer(HttpServer $server, array $options): void
     {
-        $server->listen(new SocketServer("tls://{$this->hostname}", $this->eventLoop, $options));
+        $server->listen(new SocketServer(
+            "tls://{$this->hostname}",
+            [
+                'tls' => $options,
+                'loop' => $this->eventLoop
+            ]
+        ));
 
         $this->logger->info("Server running at https://{$this->hostname}\n");
     }
@@ -100,7 +104,12 @@ class Connector
      */
     protected function bootUnsecuredServer(HttpServer $server): void
     {
-        $server->listen(new SocketServer($this->hostname, $this->eventLoop));
+        $server->listen(new SocketServer(
+            "tcp://{$this->hostname}",
+            [
+                'loop' => $this->eventLoop
+            ]
+        ));
 
         $this->logger->info("Server running at http://{$this->hostname}\n");
     }

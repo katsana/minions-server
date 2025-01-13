@@ -31,7 +31,7 @@
     "laravie/stream": "^1.3",
     "league/climate": "^3.5",
     "react/event-loop": "^1.1",
-    "react/http": "^0.8.4",
+    "react/http": "^1.9",
     "react/promise": "^2.5"
   },
   "require-dev": {
@@ -56,7 +56,7 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/maxerism/minions"
+      "url": "https://github.com/katsana/minions"
     }
   ]
 }

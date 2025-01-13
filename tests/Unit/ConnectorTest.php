@@ -10,6 +10,7 @@ use Minions\Server\Connector;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use React\EventLoop\Factory;
+use React\Http\Message\Response;
 
 class ConnectorTest extends TestCase
 {
@@ -27,14 +28,16 @@ class ConnectorTest extends TestCase
         $eventLoop = Factory::create();
         $logger = m::mock(Logger::class);
         $container = m::mock(Container::class);
+        $router = m::mock(Router::class);
 
         $hostname = '0.0.0.0:8085';
 
         $logger->shouldReceive('info')->with("Server running at http://{$hostname}\n")->andReturnNull();
+        $router->shouldReceive('__invoke')->andReturn(new Response());
 
         $connector = new Connector($hostname, $eventLoop, $logger);
 
-        $connector->handle(new Router($container, new Configuration([])), ['secure' => false]);
+        $connector->handle($router, ['secure' => false]);
 
         $this->addToAssertionCount(1);
 
@@ -47,14 +50,16 @@ class ConnectorTest extends TestCase
         $eventLoop = Factory::create();
         $logger = m::mock(Logger::class);
         $container = m::mock(Container::class);
+        $router = m::mock(Router::class);
 
         $hostname = '0.0.0.0:8086';
 
         $logger->shouldReceive('info')->with("Server running at https://{$hostname}\n")->andReturnNull();
+        $router->shouldReceive('__invoke')->andReturn(new Response());
 
         $connector = new Connector($hostname, $eventLoop, $logger);
 
-        $connector->handle(new Router($container, new Configuration([])), ['secure' => true]);
+        $connector->handle($router, ['secure' => true]);
 
         $this->addToAssertionCount(1);
 
