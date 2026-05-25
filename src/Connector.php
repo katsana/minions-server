@@ -10,6 +10,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use React\EventLoop\LoopInterface;
 use React\Http\HttpServer;
 use React\Http\Message\Response;
+use React\Http\Middleware\RequestBodyBufferMiddleware;
+use React\Http\Middleware\StreamingRequestMiddleware;
 use React\Socket\SocketServer;
 
 class Connector
@@ -52,6 +54,8 @@ class Connector
     {
         $server = new HttpServer(
             $this->eventLoop,
+            new StreamingRequestMiddleware(),
+            new RequestBodyBufferMiddleware(10 * 1024 * 1024),
             new Middleware\LogRequest($this->logger),
             new Middleware\StatusPage(),
             function (ServerRequestInterface $request) use ($router) {
